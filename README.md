@@ -17,6 +17,8 @@ includes a HTTP server to let you view your data with ease.
 
 # Quickstart:
 
+PyParasol requires a python version of at least 3.6. Download python at https://www.python.org/downloads/ 
+
 Install pyparasol
 `pip install git+https://github.com/dominikandreas/pyparasol.git`
 
