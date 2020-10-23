@@ -451,7 +451,7 @@ class PyParasol:
         for plot in range(len(self.plots)):
             final_html_lines += "\n<h2>" + self.plots[plot].plot_title + "</h2>"
             final_html_lines += '\n<div id="' + plot_id_list[plot] + \
-                                '" class="parcoords" style="height:300px; width:95%;"></div>'
+                                '" class="parcoords" style="height:300px; width:100%;"></div>'
         # adding grid for data at the bottom
         if self.show_table:
             final_html_lines += '\n<div id="grid" style="width:100%;height:700px;" class="slickgrid-container"></div>'
