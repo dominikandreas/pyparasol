@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='pyparasol',
-    version='1.0.0',
+    version='1.0b1',
     url='https://github.com/dominikandreas/pyparasol.git',
     author='Dominik Andreas',
     author_email='dominikandreas@users.noreply.github.com',
@@ -13,5 +13,17 @@ setup(
             'console_scripts': [
                 'pyparasol = pyparasol.main:main',
             ],
-        }
+        },
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+        "Development Status :: 4 - Beta",
+        "Environment :: Console",
+        "Intended Audience :: Science/Research",
+        "Framework :: Flask",
+        "Environment :: Web Environment",
+        "Topic :: Scientific/Engineering :: Visualization"
+    ],
+    python_requires='>=3.6',
 )
