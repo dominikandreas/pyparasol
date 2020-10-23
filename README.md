@@ -20,7 +20,7 @@ includes a HTTP server to let you view your data with ease.
 PyParasol requires a python version of at least 3.6. Download python at https://www.python.org/downloads/ 
 
 Install pyparasol
-`pip install git+https://github.com/dominikandreas/pyparasol.git`
+`pip install --user pyparasol`
 
 Use command line interface to view a csv file
 ```shell script
@@ -36,7 +36,7 @@ $ pyparasol data\lrgv.csv  # replace with path to your csv file(s)
 Now navigate to http://localhost:5000/
 
 # API usage example:
-For an example how to use the API, have a look at the [example.py](pyparasol/blob/master/example.py) script.
+For an example how to use the API, have a look at the [example.py](https://github.com/dominikandreas/pyparasol/blob/master/example.py) script.
 
 ## Acknowledgements
 The original implementation PyParasol which this fork based on and Parasol itself were created by the

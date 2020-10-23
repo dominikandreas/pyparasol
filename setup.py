@@ -1,12 +1,18 @@
 from setuptools import setup, find_packages
 
+
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
 setup(
     name='pyparasol',
-    version='1.0b1',
+    version='1.0b2',
     url='https://github.com/dominikandreas/pyparasol.git',
     author='Dominik Andreas',
     author_email='dominikandreas@users.noreply.github.com',
     description='Web-based visualization tool for hyper-parameters based on Parasol (parallel coordinates)',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     packages=find_packages(),
     install_requires=['pandas', 'numpy', 'flask'],
     entry_points={
