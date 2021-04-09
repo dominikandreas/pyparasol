@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='pyparasol',
-    version='1.0b2',
+    version='1.0b3',
     url='https://github.com/dominikandreas/pyparasol.git',
     author='Dominik Andreas',
     author_email='dominikandreas@users.noreply.github.com',
