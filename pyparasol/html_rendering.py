@@ -4,8 +4,11 @@ from typing import Dict, List, Union, Any, Tuple
 
 try:
     import pandas
+    pandas_available = True
 except ImportError:
     print("unable to import pandas, loading data from csv will not be possible", file=sys.stderr)
+    pandas = None
+    pandas_available = False
 
 # PyParasol
 # For more information on PyParasol and for a full API, refer to https://github.com/ParasolJS/pyparasol
@@ -57,13 +60,16 @@ class ParasolPlot:
         # styling attributes remain None unless changed
         self.data = data
         self.columns = columns
-        df: pandas.DataFrame = None
+        if pandas_available:
+            df: pandas.DataFrame = None
+        else:
+            df = None
         if type(data) is str:
             if data.endswith(".csv"):
                 df = pandas.read_csv(data)
             else:
                 raise RuntimeError("Invalid value given for data: " + data)
-        elif isinstance(data, pandas.DataFrame):
+        elif pandas_available and isinstance(data, pandas.DataFrame):
             df = data
         if df is not None:
             self.data = list(df.values.tolist())
@@ -499,7 +505,21 @@ class PyParasol:
 
     def __write_parasol_variable__(self):
         """ this function writes the parasol variable lines of code """
-        final_html_lines = "\nps = Parasol(data)('.parcoords')"
+        final_html_lines = """
+var squaredEuclid = function(p, q) {
+    let d = 0;
+    for (let i = 0; i < p.length; i++) {
+        if (isNaN(p[i]) || isNaN(q[i])){
+            d += 1000;
+        } else {
+            d += (p[i] - q[i]) * (p[i] - q[i]);;
+        }
+    }
+    return d;
+}
+        """
+
+        final_html_lines += "\nps = Parasol(data)('.parcoords')"
 
         # adds the clustering statements if set to true
         final_html_lines += self.__write_cluster_attribute_line__()
@@ -558,8 +578,8 @@ class PyParasol:
             final_html_line += ", displayIDs: " + str(self.__plots_to_cluster_list)
         # if there are certain variables to cluster set, writes them
         if self.__variables_to_cluster is not None:
-            final_html_line += ", vars: " + str(self.__variables_to_cluster)
-        final_html_line += "})"
+            final_html_line += ", vars: " + json.dumps(self.__variables_to_cluster)
+        final_html_line += ", options: {distanceFunction: squaredEuclid}})"
         return final_html_line
 
     def __write_weights_variable__(self):
